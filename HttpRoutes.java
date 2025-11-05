@@ -11,6 +11,6 @@ public class HttpRoutes extends RouteBuilder {
             .setBody()
                 .simple("Hello Camel from ${routeId}")
             .log("${body}")
-            .to("platform-http://localhost/bye");
+            .to("http://localhost/bye");
     }
 }
