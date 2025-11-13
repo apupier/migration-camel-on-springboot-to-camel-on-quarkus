@@ -1,13 +1,13 @@
 package com.acme.myspringbootproject;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import io.quarkus.runtime.Quarkus;
+import io.quarkus.runtime.annotations.QuarkusMain;
 
-@SpringBootApplication
+@QuarkusMain
 public class CamelApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CamelApplication.class, args);
+        Quarkus.run(args);
     }
 
 }

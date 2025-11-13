@@ -1,11 +1,10 @@
 package com.acme.myspringbootproject;
 
+import jakarta.enterprise.context.ApplicationScoped;
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 
-import org.springframework.stereotype.Component;
-
-@Component
+@ApplicationScoped
 public class HttpRoutes extends RouteBuilder {
 
     @Override
