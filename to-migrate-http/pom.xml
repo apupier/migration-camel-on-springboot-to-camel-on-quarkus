@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -118,13 +119,13 @@
                                 </goals>
                                 <configuration>
                                     <artifactItems>
-                                      <artifactItem>
-                                        <groupId>org.jolokia</groupId>
-                                        <artifactId>jolokia-agent-jvm</artifactId>
-                                        <version>2.2.9</version>
-                                        <type>jar</type>
-                                        <classifier>javaagent</classifier>
-                                      </artifactItem>
+                                        <artifactItem>
+                                            <groupId>org.jolokia</groupId>
+                                            <artifactId>jolokia-agent-jvm</artifactId>
+                                            <version>2.2.9</version>
+                                            <type>jar</type>
+                                            <classifier>javaagent</classifier>
+                                        </artifactItem>
                                     </artifactItems>
                                     <stripVersion>true</stripVersion>
                                 </configuration>
@@ -141,6 +142,16 @@
                 <groupId>io.quarkus.platform</groupId>
                 <artifactId>quarkus-maven-plugin</artifactId>
                 <version>3.29.2</version>
+                <extensions>true</extensions>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>build</goal>
+                            <goal>generate-code</goal>
+                            <goal>generate-code-tests</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
