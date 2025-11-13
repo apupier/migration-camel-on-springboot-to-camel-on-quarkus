@@ -35,7 +35,15 @@ Replace
         </dependency>
         <dependency>
             <groupId>org.apache.camel.springboot</groupId>
-            <artifactId>camel-kafka-starter</artifactId>
+            <artifactId>camel-http-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel.springboot</groupId>
+            <artifactId>camel-platform-http-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel.springboot</groupId>
+            <artifactId>camel-rest-starter</artifactId>
         </dependency>
 ```
 by
@@ -46,7 +54,15 @@ by
         </dependency>
         <dependency>
             <groupId>org.apache.camel.quarkus</groupId>
-            <artifactId>camel-quarkus-kafka</artifactId>
+            <artifactId>camel-quarkus-http</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel.quarkus</groupId>
+            <artifactId>camel-quarkus-platform-http</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel.quarkus</groupId>
+            <artifactId>camel-quarkus-rest</artifactId>
         </dependency>
 ```
 
@@ -79,55 +95,8 @@ Remove CamelApplication.java class
 
 Remove `camel.main.run-controller`
 
-## Update Camel textual debug configuration
-
-In the camel.debug profile of the pom.xml, for the jvmarguments for Quarkus Maven plugin, use:
-
-```
--Dcamel.main.shutdownTimeout=30 -Dquarkus.camel.source-location-enabled=true -javaagent:target/dependency/jolokia-agent-jvm-javaagent.jar=port=7878,host=localhost
-```
-
 # Launch in dev mode
 
 ```bash
 mvn clean quarkus:dev
 ```
-Note that you do not need to start a kafka instance, one is automatically provided by a "dev service".
-In this case, you can also access the Quarkus dev UI to view basic information on the Kafka.
-
-# Going further - Natify
-
-## native profile
-
-Add the native profile:
-
-```xml
-        <profile>
-            <id>native</id>
-            <activation>
-                <property>
-                    <name>native</name>
-                </property>
-            </activation>
-            <properties>
-                <skipITs>false</skipITs>
-                <quarkus.package.type>native</quarkus.package.type>
-            </properties>
-        </profile>
-```
-
-## native build
-
-To build the native binary call:
-
-```bash
-mvn clean package -Dnative
-```
-
-To start the native application:
-
-```bash
-./target/*-runner
-```
-
-Note that this time you need a Kafka instance, for instance by running `docker run -p 9092:9092 apache/kafka:4.1.0`
