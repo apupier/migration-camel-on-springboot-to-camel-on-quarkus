@@ -12,16 +12,12 @@ mvn -U org.openrewrite.maven:rewrite-maven-plugin:run -Drewrite.recipeArtifactCo
 
 ## Update boms
 
-Remove org.apache.camel.springboot:camel-spring-boot-bom
+Remove spring-boot-dependencies
 
-Add
-com.redhat.quarkus.platform:quarkus-bom
-com.redhat.quarkus.platform:quarkus-camel-bom
+Replace org.apache.camel.springboot:camel-spring-boot-bom by org.apache.camel.quarkus:camel-quarkus-bom:3.29.0
 
 ## Update core dependencies
 
-* Delete parent spring-boot-starter-parent
-* Delete spring-boot-starter-actuator
 * Replace org.apache.camel.springboot:camel-spring-boot-starter by org.apache.camel.quarkus:camel-quarkus-core
 * Delete camel-test-spring-junit5
 
@@ -75,9 +71,9 @@ Remove CamelApplication.java class
 
 ```xml
 <plugin> 
-  <groupId>${quarkus.platform.group-id}</groupId> 
+  <groupId>io.quarkus.platform</groupId> 
   <artifactId>quarkus-maven-plugin</artifactId> 
-  <version>${quarkus.platform.version}</version> 
+  <version>3.29.2</version> 
   <extensions>true</extensions> 
   <executions> 
     <execution> 
@@ -99,4 +95,10 @@ Remove `camel.main.run-controller`
 
 ```bash
 mvn clean quarkus:dev
+```
+
+Call the http service:
+
+```bash
+curl -X GET http://localhost:8080/say/hello
 ```
