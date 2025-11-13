@@ -11,7 +11,7 @@ This project was generated using [Camel Jbang](https://camel.apache.org/manual/c
 Then to test:
 
 ```bash
-curl -X GET http:localhost:8080/say/hello
+curl -X GET http://localhost:8080/say/hello
 ```
 
 
